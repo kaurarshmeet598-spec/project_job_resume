@@ -1,0 +1,19 @@
+# Web Framework
+flask>=3.0.0
+
+# Document & PDF Processing
+pdfplumber>=0.11.0
+
+# Natural Language Processing & Information Extraction
+spacy>=3.7.0
+
+# Data Analysis & Manipulation
+pandas>=2.2.0
+numpy>=1.26.0,<2.0.0
+
+# Machine Learning & Model Persistence
+scikit-learn>=1.4.0
+joblib>=1.3.0
+
+# Semantic Matching & Embeddings
+sentence-transformers>=2.5.0

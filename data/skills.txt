@@ -1,0 +1,206 @@
+python
+java
+c
+c++
+c#
+javascript
+typescript
+html
+css
+sass
+less
+sql
+nosql
+postgresql
+mysql
+sqlite
+mongodb
+redis
+cassandra
+oracle
+mariadb
+dynamodb
+flask
+django
+fastapi
+spring
+spring boot
+react
+angular
+vue
+vue.js
+next.js
+node.js
+express
+bootstrap
+tailwind css
+jquery
+rest api
+graphql
+microservices
+machine learning
+deep learning
+artificial intelligence
+data science
+natural language processing
+nlp
+computer vision
+pandas
+numpy
+scipy
+scikit-learn
+tensorflow
+keras
+pytorch
+xgboost
+lightgbm
+opencv
+transformers
+bert
+huggingface
+llm
+genai
+data analysis
+data visualization
+matplotlib
+seaborn
+plotly
+power bi
+tableau
+excel
+hadoop
+spark
+pyspark
+kafka
+airflow
+docker
+kubernetes
+aws
+azure
+gcp
+google cloud
+terraform
+ansible
+ci/cd
+jenkins
+git
+github
+gitlab
+bitbucket
+linux
+bash
+shell scripting
+powershell
+selenium
+cypress
+junit
+pytest
+postman
+unit testing
+integration testing
+qa
+manual testing
+automated testing
+agile
+scrum
+jira
+confluence
+communication
+teamwork
+leadership
+problem solving
+critical thinking
+time management
+analytical skills
+project management
+system design
+object oriented programming
+oop
+data structures
+algorithms
+api development
+web scraping
+beautifulsoup
+selenium webdriver
+etl
+data modeling
+cloud computing
+devops
+network security
+cybersecurity
+information security
+firewall
+wireshark
+penetration testing
+incident response
+linux administration
+system administration
+database administration
+data engineering
+business intelligence
+big data
+statistics
+probability
+mathematics
+predictive modeling
+linear regression
+logistic regression
+random forest
+svm
+decision trees
+neural networks
+prompt engineering
+langchain
+fastapi
+distributed systems
+grpc
+soap
+mvc
+orm
+sqlalchemy
+hibernate
+maven
+gradle
+npm
+webpack
+vite
+responsive design
+cross-browser testing
+performance optimization
+clean code
+code review
+tdd
+bdd
+devsecops
+helm
+prometheus
+grafana
+elk stack
+logstash
+kibana
+splunk
+restful services
+jwt
+oauth
+auth0
+ci/cd pipelines
+software architecture
+technical writing
+presentation skills
+collaboration
+adaptability
+debugging
+troubleshooting
+monitoring
+observability
+microfrontend
+serverless
+aws lambda
+s3
+ec2
+rds
+cloudformation
+azure devops
+bigquery
+snowflake
+dbt

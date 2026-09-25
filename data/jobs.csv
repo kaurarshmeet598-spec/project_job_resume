@@ -1,0 +1,29 @@
+job_id,title,category,required_skills,description
+1,Data Scientist,Data Science,python;pandas;numpy;machine learning;scikit-learn;data visualization;sql,Build predictive models and extract actionable business insights from complex datasets.
+2,Machine Learning Engineer,Data Science,python;deep learning;pytorch;tensorflow;nlp;transformers;computer vision,Design deploy and optimize production machine learning and deep learning pipelines.
+3,Data Analyst,Data Science,sql;tableau;power bi;excel;data analysis;statistics;python;communication,Analyze structured data to uncover patterns and create executive reporting dashboards.
+4,Data Engineer,Data Science,python;sql;etl;data engineering;spark;pyspark;airflow;kafka,Construct scalable data pipelines and distributed storage architectures for enterprise analytics.
+5,Senior Python Developer,Python Developer,python;flask;django;rest api;sql;postgresql;docker;git,Develop robust backend microservices and maintain high-volume data-driven web applications.
+6,Backend FastAPI Engineer,Python Developer,python;fastapi;microservices;redis;docker;kubernetes;git;ci/cd,Architect high-performance asynchronous REST and GraphQL APIs with Python microservices.
+7,Python Automation Engineer,Python Developer,python;web scraping;beautifulsoup;selenium;pandas;rest api;git,Build automated web scraping pipelines and testing workflows using Python frameworks.
+8,Full Stack Python Developer,Python Developer,python;django;postgresql;docker;html;css;javascript;git,Deliver end-to-end web applications combining Django REST APIs with modern web interfaces.
+9,Java Backend Developer,Java Developer,java;spring boot;microservices;rest api;hibernate;mysql;maven;git,Design and maintain scalable enterprise Java microservices with Spring Boot.
+10,Senior Java Engineer,Java Developer,java;spring;sql;postgresql;docker;kubernetes;junit;ci/cd,Lead backend engineering initiatives using modern Java frameworks and cloud deployments.
+11,Core Java Software Engineer,Java Developer,java;oop;data structures;algorithms;spring boot;rest api;git;junit,Implement core business logic algorithms and distributed backend components in Java.
+12,Java Cloud Services Engineer,Java Developer,java;spring boot;kafka;redis;microservices;docker;maven;git,Build event-driven distributed systems and cloud services using Java and Apache Kafka.
+13,Frontend Web Developer,Web Designing,html;css;javascript;react;responsive design;tailwind css;bootstrap;git,Craft responsive user interfaces and engaging interactive web experiences.
+14,Angular UI Engineer,Web Designing,html;css;javascript;typescript;angular;responsive design;git;rest api,Develop single-page enterprise web applications utilizing TypeScript and Angular.
+15,Vue.js Web Designer,Web Designing,html;css;javascript;vue;tailwind css;responsive design;git;webpack,Build dynamic reactive frontend interfaces with Vue.js and clean responsive styling.
+16,Senior React Developer,Web Designing,javascript;typescript;next.js;react;html;css;tailwind css;git,Lead development of server-side rendered React and Next.js web applications.
+17,Cloud DevOps Engineer,DevOps Engineer,docker;kubernetes;aws;terraform;ci/cd;jenkins;linux;git,Automate cloud infrastructure provisioning and maintain resilient CI/CD deployment pipelines.
+18,Azure DevOps Specialist,DevOps Engineer,azure;terraform;ansible;ci/cd;docker;kubernetes;powershell;git,Manage enterprise infrastructure on Microsoft Azure with automated deployment scripts.
+19,Site Reliability Engineer,DevOps Engineer,linux;bash;docker;kubernetes;ci/cd;monitoring;prometheus;grafana,Ensure system availability reliability and observability across Kubernetes clusters.
+20,AWS Cloud Architect,DevOps Engineer,aws;cloud computing;terraform;docker;ci/cd;linux;git;python,Architect scalable secure cloud solutions and automated delivery pipelines on AWS.
+21,PostgreSQL Database Administrator,Database,sql;postgresql;mysql;database administration;etl;data modeling;performance optimization;linux,Administer enterprise relational database systems and tune complex SQL queries.
+22,Oracle Database Administrator,Database,sql;oracle;database administration;performance optimization;linux;bash;python;data modeling,Maintain high-availability mission-critical Oracle database instances and backups.
+23,NoSQL Database Engineer,Database,nosql;mongodb;redis;cassandra;database administration;linux;python;docker,Manage distributed document and key-value database clusters for real-time applications.
+24,Data Warehouse Administrator,Database,sql;snowflake;bigquery;etl;data modeling;data engineering;python;airflow,Design cloud data warehousing solutions and oversee automated analytical data warehouses.
+25,QA Automation Engineer,Testing,selenium;python;pytest;automated testing;manual testing;jira;git;postman,Develop automated UI and API test suites to validate software release quality.
+26,Java SDET,Testing,java;selenium;junit;automated testing;postman;jira;git;ci/cd,Build robust automated testing frameworks for enterprise Java backend microservices.
+27,Full Stack QA Engineer,Testing,automated testing;cypress;javascript;postman;manual testing;jira;git;qa,Perform comprehensive frontend and API automated quality assurance across agile sprints.
+28,Manual & Functional QA Tester,Testing,manual testing;qa;jira;agile;communication;teamwork;postman;sql,Execute manual functional and regression test plans and report issues in Jira.
