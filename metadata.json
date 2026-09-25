@@ -1,0 +1,6 @@
+{
+  "name": "AI Resume & Job Matcher",
+  "description": "Upload a PDF resume to extract skills, predict job roles, and discover top matching job opportunities with skill gap analysis.",
+  "permissions": [],
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
