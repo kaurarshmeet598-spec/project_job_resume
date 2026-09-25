@@ -8,7 +8,9 @@
     "strict": false,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "jsx": "react-jsx",
     "outDir": "./dist"
   },
-  "include": ["server.ts", "src/**/*"]
+  "include": ["server.ts", "src/*"],
+  "exclude": ["src/client"]
 }

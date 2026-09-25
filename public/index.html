@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,595 +7,106 @@
   <meta name="description" content="Upload a PDF resume to extract skills, predict job roles, and discover top matching job opportunities with skill gap analysis.">
   <meta property="og:title" content="AI Resume &amp; Job Matcher">
   <meta property="og:description" content="Upload a PDF resume to extract skills, predict job roles, and discover top matching job opportunities with skill gap analysis.">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            slate: {
+              950: '#070a12',
+              900: '#0f172a',
+              850: '#131e36',
+              800: '#1e293b',
+              700: '#334155',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
   <style>
-    :root {
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --success-bg: #ecfdf5;
-      --success-text: #065f46;
-      --warning-bg: #fffbeb;
-      --warning-text: #92400e;
-      --danger-bg: #fef2f2;
-      --danger-text: #991b1b;
-      --accent: #8b5cf6;
+    /* Custom Pop-In and Fade-In Animations */
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.85) translateY(4px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-popIn {
+      animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Custom thin scrollbar */
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(51, 65, 85, 0.8);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(99, 102, 241, 0.8);
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      padding: 2rem 1rem;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    header h1 {
-      font-size: 2.25rem;
-      font-weight: 700;
-      color: #1e293b;
-      letter-spacing: -0.025em;
-    }
-
-    header p {
-      color: var(--text-muted);
-      margin-top: 0.5rem;
-      font-size: 1.05rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      padding: 1.75rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-    }
-
-    /* Upload Area */
-    .upload-box {
-      border: 2px dashed #cbd5e1;
-      border-radius: 10px;
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.2s, background-color 0.2s;
-      background: #fafafa;
-    }
-
-    .upload-box:hover, .upload-box.dragover {
-      border-color: var(--primary);
-      background-color: #eff6ff;
-    }
-
-    .upload-icon {
-      width: 48px;
-      height: 48px;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
-    }
-
-    .upload-box input[type="file"] {
-      display: none;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      margin-top: 1.25rem;
-      background: var(--primary);
-      color: #fff;
-      padding: 0.75rem 1.75rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, opacity 0.2s;
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      background: var(--primary-hover);
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .file-name-preview {
-      margin-top: 0.75rem;
-      font-weight: 500;
-      color: var(--primary);
-    }
-
-    /* Alerts */
-    .alert {
-      padding: 1rem 1.25rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-      display: none;
-    }
-
-    .alert-error {
-      background-color: var(--danger-bg);
-      color: var(--danger-text);
-      border: 1px solid #fecaca;
-    }
-
-    /* Spinner */
-    .spinner {
-      display: inline-block;
-      width: 1rem;
-      height: 1rem;
-      border: 2px solid #ffffff;
-      border-radius: 50%;
-      border-top-color: transparent;
-      animation: spin 0.8s linear infinite;
-      margin-right: 0.5rem;
-      vertical-align: middle;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Results Grid */
-    #results-section {
-      display: none;
-    }
-
-    .section-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #1e293b;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    @media (max-width: 768px) {
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .meta-item {
-      margin-bottom: 0.75rem;
-    }
-
-    .meta-label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-    }
-
-    .meta-value {
-      font-size: 1rem;
-      font-weight: 500;
-      color: #1e293b;
-    }
-
-    /* Chips */
-    .chips-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-
-    .chip {
-      padding: 0.25rem 0.65rem;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .chip-default {
-      background-color: #e2e8f0;
-      color: #334155;
-    }
-
-    .chip-success {
-      background-color: var(--success-bg);
-      color: var(--success-text);
-      border: 1px solid #a7f3d0;
-    }
-
-    .chip-missing {
-      background-color: var(--warning-bg);
-      color: var(--warning-text);
-      border: 1px solid #fde68a;
-      font-weight: 600;
-    }
-
-    /* Confidence Bar */
-    .confidence-bar-bg {
-      width: 100%;
-      height: 10px;
-      background: #e2e8f0;
-      border-radius: 5px;
-      overflow: hidden;
-      margin-top: 0.5rem;
-    }
-
-    .confidence-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      border-radius: 5px;
-      transition: width 0.6s ease;
-      width: 0%;
-    }
-
-    /* Job Recommendation Cards */
-    .job-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      margin-bottom: 1rem;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-      background: #ffffff;
-    }
-
-    .job-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-    }
-
-    .job-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.75rem;
-    }
-
-    .job-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #1e293b;
-    }
-
-    .job-category {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .match-badge {
-      background: #eff6ff;
-      color: var(--primary);
-      padding: 0.35rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      border: 1px solid #bfdbfe;
-    }
-
-    .job-scores {
-      font-size: 0.825rem;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-      display: flex;
-      gap: 1.25rem;
-    }
-
-    .skills-block {
-      margin-top: 0.5rem;
-    }
-
-    .skills-subhead {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
+      background-color: #070a12;
+      color: #f8fafc;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <h1>AI Resume &amp; Job Matcher</h1>
-      <p>Upload your PDF resume to extract skills, predict job roles, and discover top matching opportunities</p>
-    </header>
-
-    <!-- Error Banner -->
-    <div id="error-alert" class="alert alert-error"></div>
-
-    <!-- Upload Card -->
-    <div class="card">
-      <div id="drop-area" class="upload-box">
-        <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-        </svg>
-        <p style="font-weight: 600; font-size: 1.05rem;">Choose a PDF resume or drag &amp; drop it here</p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Supports text-based PDF files up to 5 MB</p>
-        <input type="file" id="file-input" accept=".pdf" />
-        <div id="file-preview" class="file-name-preview"></div>
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen">
+  <div id="root">
+    <!-- Server/Initial loading fallback -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+      <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 animate-spin p-[2px]">
+        <div class="w-full h-full bg-slate-950 rounded-[10px]"></div>
       </div>
-      <div style="text-align: center;">
-        <button id="analyze-btn" class="btn-primary" disabled>Analyze Resume</button>
-      </div>
-    </div>
-
-    <!-- Results Section -->
-    <div id="results-section">
-      <div class="grid-2">
-        <!-- Candidate Profile -->
-        <div class="card">
-          <h2 class="section-title">Candidate Profile</h2>
-          <div class="meta-item">
-            <div class="meta-label">Email</div>
-            <div class="meta-value" id="res-email">Not detected</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Phone</div>
-            <div class="meta-value" id="res-phone">Not detected</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Education</div>
-            <div class="meta-value" id="res-education">None specified</div>
-          </div>
-          <div class="meta-item" style="margin-top: 1rem;">
-            <div class="meta-label">Identified Skills (<span id="skill-count">0</span>)</div>
-            <div class="chips-container" id="res-skills"></div>
-          </div>
-        </div>
-
-        <!-- Predicted Role -->
-        <div class="card">
-          <h2 class="section-title">Predicted Role</h2>
-          <div style="margin-top: 1rem;">
-            <div style="font-size: 1.4rem; font-weight: 700; color: #1e293b;" id="res-role-title">-</div>
-            <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
-              <span class="meta-label">Model Confidence</span>
-              <span style="font-weight: 700; font-size: 0.9rem;" id="res-confidence-text">0%</span>
-            </div>
-            <div class="confidence-bar-bg">
-              <div id="confidence-bar" class="confidence-bar-fill"></div>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">
-              Predicted using stratified TF-IDF Logistic Regression trained across industry IT domains.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recommended Jobs -->
-      <div class="card">
-        <h2 class="section-title">Recommended Jobs &amp; Skill Gap Analysis</h2>
-        <div id="jobs-container"></div>
-      </div>
+      <p class="mt-4 text-sm font-medium text-slate-400 animate-pulse">Initializing TalentVector AI...</p>
     </div>
   </div>
 
-  <script>
-    const dropArea = document.getElementById("drop-area");
-    const fileInput = document.getElementById("file-input");
-    const filePreview = document.getElementById("file-preview");
-    const analyzeBtn = document.getElementById("analyze-btn");
-    const errorAlert = document.getElementById("error-alert");
-    const resultsSection = document.getElementById("results-section");
-
-    let selectedFile = null;
-
-    dropArea.addEventListener("click", () => fileInput.click());
-
-    fileInput.addEventListener("change", (e) => {
-      handleFiles(e.target.files);
-    });
-
-    ["dragenter", "dragover"].forEach((name) => {
-      dropArea.addEventListener(name, (e) => {
-        e.preventDefault();
-        dropArea.classList.add("dragover");
-      });
-    });
-
-    ["dragleave", "drop"].forEach((name) => {
-      dropArea.addEventListener(name, (e) => {
-        e.preventDefault();
-        dropArea.classList.remove("dragover");
-      });
-    });
-
-    dropArea.addEventListener("drop", (e) => {
-      handleFiles(e.dataTransfer.files);
-    });
-
-    function handleFiles(files) {
-      if (files.length === 0) return;
-      const file = files[0];
-      if (!file.name.toLowerCase().endsWith(".pdf")) {
-        showError("Please select a PDF file.");
-        selectedFile = null;
-        filePreview.textContent = "";
-        analyzeBtn.disabled = true;
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        showError("File exceeds the maximum 5 MB size limit.");
-        selectedFile = null;
-        filePreview.textContent = "";
-        analyzeBtn.disabled = true;
-        return;
-      }
-
-      hideError();
-      selectedFile = file;
-      filePreview.textContent = `Selected: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
-      analyzeBtn.disabled = false;
-    }
-
-    function showError(msg) {
-      errorAlert.textContent = msg;
-      errorAlert.style.display = "block";
-    }
-
-    function hideError() {
-      errorAlert.textContent = "";
-      errorAlert.style.display = "none";
-    }
-
-    analyzeBtn.addEventListener("click", async () => {
-      if (!selectedFile) return;
-
-      hideError();
-      analyzeBtn.disabled = true;
-      analyzeBtn.innerHTML = '<span class="spinner"></span>Analyzing...';
-      resultsSection.style.display = "none";
-
-      const formData = new FormData();
-      formData.append("resume", selectedFile);
-
-      try {
-        const response = await fetch("/api/analyze", {
-          method: "POST",
-          body: formData,
-        });
-
-        const data = await response.json();
-
-        if (!response.ok || data.status !== "success") {
-          showError(data.message || "An error occurred while analyzing the resume.");
-          return;
-        }
-
-        renderResults(data);
-      } catch (err) {
-        showError("Network error or server unreachable. Please check if the server is running.");
-      } finally {
-        analyzeBtn.disabled = false;
-        analyzeBtn.textContent = "Analyze Resume";
-      }
-    });
-
-    function renderResults(data) {
-      const { candidate, predicted_role, recommended_jobs } = data;
-
-      // Candidate Profile
-      document.getElementById("res-email").textContent = candidate.email || "Not found";
-      document.getElementById("res-phone").textContent = candidate.phone || "Not found";
-
-      const eduContainer = document.getElementById("res-education");
-      if (candidate.education && candidate.education.length > 0) {
-        eduContainer.innerHTML = candidate.education.map(e => `<div>${escapeHtml(e)}</div>`).join("");
-      } else {
-        eduContainer.textContent = "No degree information detected";
-      }
-
-      const skillsContainer = document.getElementById("res-skills");
-      document.getElementById("skill-count").textContent = candidate.skills ? candidate.skills.length : 0;
-      skillsContainer.innerHTML = "";
-      if (candidate.skills && candidate.skills.length > 0) {
-        candidate.skills.forEach(skill => {
-          const chip = document.createElement("span");
-          chip.className = "chip chip-default";
-          chip.textContent = skill;
-          skillsContainer.appendChild(chip);
-        });
-      } else {
-        skillsContainer.innerHTML = '<span style="color:var(--text-muted);font-size:0.9rem;">No matching skills identified</span>';
-      }
-
-      // Predicted Role
-      document.getElementById("res-role-title").textContent = predicted_role.title || "General";
-      const confidencePercent = Math.round((predicted_role.confidence || 0) * 100);
-      document.getElementById("res-confidence-text").textContent = `${confidencePercent}%`;
-      document.getElementById("confidence-bar").style.width = `${confidencePercent}%`;
-
-      // Recommended Jobs
-      const jobsContainer = document.getElementById("jobs-container");
-      jobsContainer.innerHTML = "";
-
-      if (!recommended_jobs || recommended_jobs.length === 0) {
-        jobsContainer.innerHTML = "<p style='color:var(--text-muted);'>No job recommendations found.</p>";
-      } else {
-        recommended_jobs.forEach(job => {
-          const jobCard = document.createElement("div");
-          jobCard.className = "job-card";
-
-          const matchedHtml = (job.matched_skills || [])
-            .map(s => `<span class="chip chip-success">${escapeHtml(s)}</span>`)
-            .join(" ") || '<span style="color:var(--text-muted);font-size:0.85rem;">None</span>';
-
-          const missingHtml = (job.missing_skills || [])
-            .map(s => `<span class="chip chip-missing">${escapeHtml(s)}</span>`)
-            .join(" ") || '<span style="color:var(--success-text);font-size:0.85rem;">No missing skills (100% overlap)</span>';
-
-          jobCard.innerHTML = `
-            <div class="job-header">
-              <div>
-                <div class="job-title">${escapeHtml(job.title)}</div>
-                <div class="job-category">${escapeHtml(job.category)}</div>
-              </div>
-              <div class="match-badge">${job.match_percent}% Match</div>
-            </div>
-            <div class="job-scores">
-              <span>Semantic Similarity: <strong>${Math.round(job.semantic_score * 100)}%</strong></span>
-              <span>Skill Overlap: <strong>${Math.round(job.skill_overlap * 100)}%</strong></span>
-            </div>
-            <div class="skills-block">
-              <div class="skills-subhead">Matched Skills</div>
-              <div class="chips-container">${matchedHtml}</div>
-            </div>
-            <div class="skills-block" style="margin-top:0.75rem;">
-              <div class="skills-subhead">Skill Gaps (Missing)</div>
-              <div class="chips-container">${missingHtml}</div>
-            </div>
-          `;
-          jobsContainer.appendChild(jobCard);
-        });
-      }
-
-      resultsSection.style.display = "block";
-      resultsSection.scrollIntoView({ behavior: "smooth" });
-    }
-
-    function escapeHtml(str) {
-      if (!str) return "";
-      return str.replace(/[&<>"']/g, function(m) {
-        return {
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          "'": '&#39;'
-        }[m];
-      });
-    }
-  </script>
+  <!-- React Bundle Script -->
+  <script src="/bundle.js" defer></script>
 </body>
 </html>

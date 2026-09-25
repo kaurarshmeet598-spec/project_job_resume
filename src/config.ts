@@ -15,5 +15,5 @@ export const SKILLS_TXT = path.join(DATA_DIR, 'skills.txt');
 
 export const MAX_CONTENT_LENGTH = 5 * 1024 * 1024; // 5 MB
 export const TOP_N_RECOMMENDATIONS = 5;
-export const HOST = '0.0.0.0';
-export const PORT = 3000;
+export const HOST = process.env.HOST || '0.0.0.0';
+export const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
